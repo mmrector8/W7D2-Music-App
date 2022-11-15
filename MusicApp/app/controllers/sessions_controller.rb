@@ -2,20 +2,20 @@ class SessionsController < ApplicationController
     
     def new
         @user = User.new
-        render json: 'new session!'
+        render :new
     end
 
     def create
-        username= params[:user][:username]
+        email = params[:user][:email]
         password = params[:user][:password]
 
-        @user.find_by_credentials(username, password)
+        @user = User.find_by_credentials(email, password)
 
         if @user
             login(@user)
             redirect_to users_url
         else
-            render json: 'session initiation unsuccessful'
+            render :new
         end
     end
 

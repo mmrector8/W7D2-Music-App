@@ -12,4 +12,47 @@
  *
  *= require_tree .
  *= require_self
+
+
  */
+ header {
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+    font-size: 40px;
+    font-family: 'courier new'; 
+    background: rgb(0, 213, 255);
+    padding: 20px;
+    color: yellow;
+    height: 60px;
+ }
+
+ form , h2, h3, label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+ }
+
+ .logic {
+   display: flex;
+   font-size: 10px;
+   flex-direction: column;
+ }
+
+ body {
+    background-color: rgb(248, 248, 171);
+ }
+
+ button{
+   font-family: "courier new";
+   font-size: 20px;
+   background-color: rgb(0, 213, 255);
+   color: yellow;
+ }
+ #header {
+    font-family: 'courier new';
+    background-color: yellow;
+    color: rgb(0, 213, 255);
+ }

@@ -10,7 +10,18 @@
   </head>
 
   <body>
+  <header>
+    Music App
+    <div class = "logic">
+      <% if logged_in? %>
+    <h2>Welcome <%= current_user.email %>!</h2>
+    <form action="<%= session_url%>" method = "POST">
+      <input type="hidden" name = "_method" value = "DELETE">
+      <button type = "submit" id= "header" > Sign Out </button>
+    </form>
+    <%end %>
+    </div>
+    </header>
     <%= yield %>
-    
   </body>
 </html>

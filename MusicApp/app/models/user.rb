@@ -6,20 +6,20 @@ class User < ApplicationRecord
     validates :password, length: {minimum: 8, allow_nil: true}
 
     #SPIRE
-    def self.find_by_credentials(username, password)
-        user = User.find_by(username: username)
+    def self.find_by_credentials(email, password)
+        user = User.find_by(email: email)
 
         if user && user.is_password?(password)
-            render user
+            return user
         else
-            render nil 
+            return nil 
         end
 
     end
 
     def password=(password)
         @password = password
-        self.password_digest = BCrpyt::Password.create(password)
+        self.password_digest = BCrypt::Password.create(password)
     end
 
     def is_password?(password)
@@ -39,9 +39,10 @@ class User < ApplicationRecord
     end
 
     def generate_unique_session_token
-        token = RandomSecure::urlsafe_base64
-        if User.exists?(session_token: token)
-            token = RandomSecure::urlsafe_base64
+        token = SecureRandom::urlsafe_base64
+        while User.exists?(session_token: token)
+            token = SecureRandom::urlsafe_base64
         end
+        token
     end
 end
