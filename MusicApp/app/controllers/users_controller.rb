@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
 
     def show
-        user = User.find(params[:id])
-        render :user
+        user = User.find_by(id: params[:id])
+        render :show
     end
 
     def new
@@ -11,10 +11,11 @@ class UsersController < ApplicationController
     end
 
     def create
-        user = User.new(user_params)
+        @user = User.new(user_params)
 
-        if user.save!
-            render json: 'save successful'
+        if @user.save!
+            login(@user)
+            render :show
         else
             render json: 'try again!'
         end
